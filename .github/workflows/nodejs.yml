@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g yarn
-          yyarn install --frozen-lockfile
+          yarn install --frozen-lockfile
           cd ./frontend && yarn run build --if-present
           cd ./frontend && yarn test
           cd ./frontend && yarn lint
