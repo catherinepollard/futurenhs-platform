@@ -23,10 +23,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Install yarn
+          run: npm install -g yarn
       - name: Install dependencies
         run: |
-          npm install -g yarn
+          cd frontend
           yarn install --frozen-lockfile
-          cd ./frontend && yarn run build --if-present
-          cd ./frontend && yarn test
-          cd ./frontend && yarn lint
+      - name: yarn test & build
+      run: |
+          yarn lint
+          yarn test
+          yarn build
