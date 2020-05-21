@@ -25,7 +25,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: yarn
-      - run: cd ./frontend && yarn ci
       - run: cd ./frontend && yarn run build --if-present
       - run: cd ./frontend && yarn test
       - run: cd ./frontend && yarn lint
