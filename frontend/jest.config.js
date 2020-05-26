@@ -1,4 +1,4 @@
-// add comment
+// takes files ending in js, jsc, ts, tsx and runs babel-jest
 module.exports = {
   collectCoverageFrom: [
     "**/*.{js,jsx,ts,tsx}",
