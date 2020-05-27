@@ -22,12 +22,15 @@ ACCESS_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME 
 az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME --account-key "$ACCESS_KEY"
 
 echo "
-# Create a terraform.tfvars file with the following content
-resource_group_name="$RESOURCE_GROUP_NAME"
-storage_account_name="$STORAGE_ACCOUNT_NAME"
-USERNAME="$NAME"
-TF_VAR_STORAGE_ACCOUNT_NAME="$STORAGE_ACCOUNT_NAME"
-TF_VAR_CONTAINER_NAME="$CONTAINER_NAME"
-TF_VAR_ACCESS_KEY="$ACCESS_KEY"
+# Create a terraform.tfvars file (in infrastructure/environments/dev/) with the following content:
+
+resource_group_name=\"$RESOURCE_GROUP_NAME\"
+storage_account_name=\"$STORAGE_ACCOUNT_NAME\"
+USERNAME=\"$NAME\"
+TF_VAR_STORAGE_ACCOUNT_NAME=\"$STORAGE_ACCOUNT_NAME\"
+TF_VAR_CONTAINER_NAME=\"$CONTAINER_NAME\"
+TF_VAR_ACCESS_KEY=\"$ACCESS_KEY\"
+
+# and then run `terraform init -backend-config=terraform.tfvars` in the same folder.
 "
 

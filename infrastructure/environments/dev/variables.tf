@@ -4,3 +4,8 @@ variable "storage_account_name" { description = "Used by backend config hack. If
 variable "USERNAME" {
   description = "All resources will be grouped by environment - use your name"
 }
+
+variable "REGION" {
+  description = "Azure region"
+  default     = "westeurope"
+}
