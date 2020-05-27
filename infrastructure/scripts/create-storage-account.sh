@@ -1,10 +1,10 @@
 #!/bin/bash
 
-set -eux
+set -eu
 
 NAME="${1:?"Please enter your name as first argument"}"
 
-RESOURCE_GROUP_NAME=tfstate
+RESOURCE_GROUP_NAME=tfstate$NAME
 STORAGE_ACCOUNT_NAME=tfstate$NAME
 CONTAINER_NAME=tfstate
 
@@ -21,7 +21,10 @@ ACCESS_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME 
 # Create blob container
 az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME --account-key "$ACCESS_KEY"
 
+
 echo "
+# Put this in your .env file
+export TF_VAR_USERNAME=$NAME
 export TF_VAR_STORAGE_ACCOUNT_NAME=$STORAGE_ACCOUNT_NAME
 export TF_VAR_CONTAINER_NAME=$CONTAINER_NAME
 export TF_VAR_ACCESS_KEY=$ACCESS_KEY

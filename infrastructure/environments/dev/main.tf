@@ -10,8 +10,8 @@ provider "random" {
 terraform {
   required_version = "0.12.25"
   backend "azurerm" {
-    resource_group_name  = "tfstate"
-    storage_account_name = "tfstate${var.ENVIRONMENT}"
+    resource_group_name  = "tfstate${var.USERNAME}"
+    storage_account_name = "tfstate${var.USERNAME}"
     container_name       = "tfstate"
     key                  = "dev.terraform.tfstate"
   }
