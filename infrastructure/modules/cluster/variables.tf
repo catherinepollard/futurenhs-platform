@@ -18,6 +18,10 @@ variable "vnet_resource_group" {
   description = "Virtual Network resource group name"
 }
 
+variable "vnet_subnet_id" {
+
+}
+
 variable "cluster_subnet_name" {
   description = "Cluster Subnet name"
 }

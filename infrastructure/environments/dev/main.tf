@@ -41,70 +41,21 @@ resource "azurerm_subnet" "cluster_nodes" {
   address_prefixes     = ["10.240.0.0/16"]
 }
 
-resource "azurerm_kubernetes_cluster" "cluster" {
-  name                = var.USERNAME
-  location            = var.REGION
-  dns_prefix          = var.USERNAME
-  resource_group_name = azurerm_resource_group.platform.name
-
-  default_node_pool {
-    name                = "default"
-    enable_auto_scaling = true
-    max_count           = 2
-    min_count           = 1
-    vm_size             = "Standard_D2_v2"
-    vnet_subnet_id      = azurerm_subnet.cluster_nodes.id
-    availability_zones  = ["1", "2", "3"]
-    tags = {
-      environment = "dev-${var.USERNAME}"
-    }
-  }
-
-  identity {
-    type = "SystemAssigned"
-  }
-
-  role_based_access_control {
-    enabled = true
-  }
-
-  network_profile {
-    network_plugin = "kubenet"
-  }
-
-  addon_profile {
-    aci_connector_linux {
-      enabled = false
-    }
-    azure_policy {
-      enabled = false
-    }
-    http_application_routing {
-      enabled = false
-    }
-    kube_dashboard {
-      enabled = false
-    }
-    oms_agent {
-      enabled                    = true
-      log_analytics_workspace_id = azurerm_log_analytics_workspace.cluster.id
-    }
-  }
-
-  tags = {
-    environment = "dev-${var.USERNAME}"
-  }
-}
-
-
-resource "azurerm_log_analytics_workspace" "cluster" {
-  name                = "cluster-${var.USERNAME}"
+module cluster {
+  source = "../../modules/cluster"
+  # client_id                             = var.CLIENT_ID
+  # client_secret                         = var.CLIENT_SECRET
+  environment         = "dev-${var.USERNAME}"
   location            = var.REGION
   resource_group_name = azurerm_resource_group.platform.name
-  sku                 = "PerGB2018"
-  retention_in_days   = 30
-
-  tags = {
-    environment = "dev-${var.USERNAME}"
-  }
+  vnet_name           = azurerm_virtual_network.platform.name
+  vnet_resource_group = azurerm_virtual_network.platform.resource_group_name
+  vnet_subnet_id      = azurerm_subnet.cluster_nodes.id
+  # lb_subnet_id                          = azurerm_subnet.load_balancer.id
+  cluster_subnet_name = azurerm_subnet.cluster_nodes.name
+  # cluster_subnet_cidr                   = "10.5.65.192/26"
+  # cluster_route_destination_cidr_blocks = var.CLUSTER_ROUTE_DESTINATION_CIDR_BLOCKS
+  # cluster_route_next_hop                = var.CLUSTER_ROUTE_NEXT_HOP
+  # lb_route_table_id                     = azurerm_route_table.load_balancer.id
+  # support_email_addresses               = var.SUPPORT_EMAIL_ADDRESSES
 }
