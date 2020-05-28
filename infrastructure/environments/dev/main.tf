@@ -30,7 +30,7 @@ resource "azurerm_virtual_network" "platform" {
   location            = var.REGION
   resource_group_name = azurerm_resource_group.platform.name
   tags = {
-    environment = "dev-${var.USERNAME}"
+    environment = var.USERNAME
   }
 }
 
