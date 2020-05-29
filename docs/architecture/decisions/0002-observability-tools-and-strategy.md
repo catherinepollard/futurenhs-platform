@@ -19,7 +19,7 @@ Our solution around Azure Monitor and it's related services. As a managed servic
 We will use [Prometheus](https://prometheus.io/) to gather metrics for the following reasons:
  - Both [Linkerd](https://linkerd.io/2/tasks/exporting-metrics/) and [Istio](https://istio.io/docs/tasks/observability/metrics/querying-metrics/) (our potential service mesh choices) have an internal Prometheus instance.
  - Proven and popular, wide compatibility, Cloud Native Computing Foundation project.
- - We can leverage some of the knowledge and existing work done by the [MRHA team](https://github.com/MHRA/products)
+ - We can leverage some of the knowledge and existing work done by the [MHRA team](https://github.com/MHRA/products)
  - Close integration with Grafana should we decide to use it (pre-existing dashboard templates for exporters etc).
 
 Prometheus support within [Azure Monitor for Containers](https://docs.microsoft.com/en-us/azure/azure-monitor/insights/container-insights-overview) means that no separate Prometheus server is required but allows for scraping /metrics endpoints and make use of Prometheus queries for custom alerts etc.
@@ -37,9 +37,6 @@ Will be consumed by [Azure Application Insights](https://docs.microsoft.com/en-u
 Azure Monitor pulls in logs via its Metrics API
  - We can use Log Analytics in the Azure portal to write log queries and interactively analyze log data
  - We can use the Application Insights analytics console in the Azure portal to write log queries and interactively analyze log data from Application Insights.
-
-NOTE: Log Analytics pricing - 31 days free.  If required, can be retained after this for £0.097 per GB per month(NOTE: Presume this need to be set manually by us in settings somewhere if needed)
-
 
 ### Alerting
 Alerts will be configured through Azure Monitor.
