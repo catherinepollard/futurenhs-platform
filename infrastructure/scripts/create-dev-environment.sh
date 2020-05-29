@@ -5,9 +5,11 @@ set -eu
 NAME="${1:?"Please enter your name as first argument"}"
 
 RESOURCE_GROUP_NAME=tfstate$NAME
-STORAGE_ACCOUNT_NAME=tfstate$NAME
+STORAGE_ACCOUNT_NAME=fnhstfstatedev$NAME
 CONTAINER_NAME=tfstate
 
+# Use non-production subscription
+az account set --subscription 4a4be66c-9000-4906-8253-6a73f09f418d
 # Create resource group
 # TODO: do we want to limit this to england/wales, or is europe okay?
 az group create --name $RESOURCE_GROUP_NAME --location westeurope
@@ -27,10 +29,6 @@ echo "
 resource_group_name=\"$RESOURCE_GROUP_NAME\"
 storage_account_name=\"$STORAGE_ACCOUNT_NAME\"
 USERNAME=\"$NAME\"
-TF_VAR_STORAGE_ACCOUNT_NAME=\"$STORAGE_ACCOUNT_NAME\"
-TF_VAR_CONTAINER_NAME=\"$CONTAINER_NAME\"
-TF_VAR_ACCESS_KEY=\"$ACCESS_KEY\"
 
 # and then run `terraform init -backend-config=terraform.tfvars` in the same folder.
 "
-
