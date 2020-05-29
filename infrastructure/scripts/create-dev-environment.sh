@@ -30,5 +30,5 @@ resource_group_name=\"$RESOURCE_GROUP_NAME\"
 storage_account_name=\"$STORAGE_ACCOUNT_NAME\"
 USERNAME=\"$NAME\"
 
-# and then run `terraform init -backend-config=terraform.tfvars` in the same folder.
+# and then run \"terraform init -backend-config=terraform.tfvars\" in the same folder.
 "
