@@ -4,10 +4,13 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+  on:
+    push:
+      branches:
+        - "**"
+      paths:
+        - frontend/**
+        - .github/workflows/nodejs.yml
 
 jobs:
   build:
