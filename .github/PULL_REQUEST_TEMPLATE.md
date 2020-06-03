@@ -1,23 +1,27 @@
-<h2>Name of story / Ticket #</h2>
+## Name of story / Ticket #
 Link to Zeplin/design files
-<h2>Acceptance Criteria</h2>
-<h2>Pre-review checklist:</h2>
+
+## Acceptance Criteria
+
+## Pre-review checklist:
 
 - [ ] Tests
 
 - [ ] Documentation
 
-- [ ] Analytics/Monitoring
+- [ ] Analytics (user analytics, e.g. Google Analytics)
+
+- [ ] Observability (metrics/tracing)
 
 - [ ] Feature flag
 
-<h2>Testing information</h2>
+## Testing information
 
 - Is there any special setup required? 
 
 - Test plan?
 
-<h2>Test:</h2> 
+## Test:
 
 - [ ] Tested locally 
 
