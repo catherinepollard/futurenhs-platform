@@ -14,7 +14,7 @@ while true; do
             echo "Please wait a few minutes for the cluster to pull the Linkerd images and then run 'linkerd check' to verify the installation."
             
         break;;
-        [Nn]* ) echo "You may wish to use the command 'az aks get-credentials' to change cluster, setting 'resource group' and'name' flags appropriately. Have a lovely day."; exit;;
+        [Nn]* ) echo "You may wish to use the commands 'az account set' and 'az aks get-credentials' to change cluster."; exit;;
         * ) echo "Please answer 'yes' or 'no'.";;
     esac
 done
