@@ -48,6 +48,12 @@ We use [Terraform](https://www.terraform.io/) to build our environments.
     az login
     ``` 
    
+1. Install the [Linkerd CLI](https://linkerd.io/2/getting-started/):
+
+    ```bash
+    brew install linkerd
+    ```      
+   
 ## Development Environment Setup
  
 Infrastructure is set up so that each developer can create their own instance of the environment in Azure,
@@ -110,7 +116,7 @@ as opposed to sharing a staging environment.
 1. To install the [Linkerd](https://linkerd.io/) control plane, run the `install-linkerd.sh` script that can be found within `infrastructure/scripts` directory. 
 
     ```bash
-    chmod +x ./install-linkerd.sh && ./install-linkerd.sh
+    ./install-linkerd.sh
     ``` 
 
     Once installed, view the Linkerd dashboard with the following command:
