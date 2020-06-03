@@ -1,14 +1,14 @@
-<h2>Description of the issue:</h2>
+## Description of the issue:
 Please provide a summary of the issue.
 
-<h2>Screenshot(s):</h2>
+## Screenshot(s):
 If relevant please provide a screenshot of the issue.
 
-<h2>Expected behaviour:</h2>
+## Expected behaviour:
 Please describe the expected behaviour. 
 
-<h2>Reproduction steps:</h2>
+## Reproduction steps:
 Please provide steps to reproduce the issue.
 
-<h2>Affected OS/Browsers:</h2>
+## Affected OS/Browsers:
 Please provide the affected OS/Browsers. 
