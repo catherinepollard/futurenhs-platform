@@ -31,12 +31,17 @@ jobs:
           yarn lint
           yarn test
           yarn build
-      - name: Docker Login
-        uses: Azure/docker-login@v1
-        with:
-          login-server: citracytest.azurecr.io
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
-        run: |
-          docker build . -t citracytest.azurecr.io/k8sdemo:${{ github.sha }}
-          docker push citracytest.azurecr.io/k8sdemo:${{ github.sha }}
+          - name: 'Login via Azure CLI'
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+        - name: 'Build and push image'
+          uses: azure/docker-login@v1
+          with:
+            login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+            username: ${{ secrets.REGISTRY_USERNAME }}
+            password: ${{ secrets.REGISTRY_PASSWORD }}
+        - run: |
+            docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
+            docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
