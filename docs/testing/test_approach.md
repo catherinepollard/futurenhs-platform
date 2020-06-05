@@ -145,7 +145,7 @@ When it comes to making big infrastructure changes it is likely that we would op
 Once thoroughly tested in a temporary ‘staging’ environment the changes would be rolled out to Production.
 
 ### Performance Testing
-To avoid negatively affecting Production performance it would be wise to test performance/load testing in a separate temporary environment that mirrors Production. We can use a framework such as Gatling in conjunction with Postman to perform load testing to stress the platform and measure performance. It would useful to establish a baseline for future comparison.
+To avoid negatively affecting Production performance it would be wise to test performance/load testing in a separate temporary environment that mirrors Production. We can use a framework such as Gatling in conjunction with Postman to perform load testing to stress the platform and measure performance. It would be useful to establish a baseline for future comparison.
 
 ## Levels of Testing
 ### The Testing Pyramid
@@ -291,9 +291,9 @@ It has been suggested that when a bug is logged that the QA write a unit test fo
 
 Potential accessibility tools: 
 
-- A11y
-- AccessLintCI
-- Pa11y
+- [A11y](https://github.com/addyosmani/a11y)
+- [AccessLintCI](https://github.com/accesslint/accesslint-ci)
+- [Pa11y](http://pa11y.org/)
 
 Honourable mentions:
 
