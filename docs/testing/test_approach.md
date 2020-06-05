@@ -5,6 +5,47 @@ Through a combination of automated tests and effective manual testing, our empha
 
 We aim to deliver a high quality platform and migrate users in the shortest time possible. To enable this we are proposing to pursue testing strategies that will enable quick delivery, without sacrificing quality. Through test-driven development (TTD), incorporating comprehensive automation testing and targeted, effective manual testing locally and in Production, we are confident that we can minimise the number of issues that users will encounter. 
 
+## Contents
+
+- [Proposed Testing Flow](#proposed-testing-flow)
+  - [Continuous Integration Testing](#continuous-integration-testing)
+- [Test Environments](#test-environments)
+  - [Local Environment](#local-environment)
+  - [Branch Environments](#branch-environments)
+  - [Test Data](#test-data)
+- [Feature Flags and Staging](#feature-flags-and-staging)
+  - [Staging Environments](#staging-environments)
+  - [Feature Flagging](#feature-flagging)
+  - [Benefits](#benefits)    
+    - [Beta Testing](#beta-testing)     
+    - [Code Rollback](#code-rollback)     
+    - [A/B Testing](#ab-testing)     
+    - [Canary Deployments](#canary-deployments)     
+    - [Workspace Segmentation & User Engagement](#workspace-segmentation--user-engagement)
+  - [Infrastructure Changes](#infrastructure-changes)
+  - [Performance Testing](#performance-testing)
+- [Levels of Testing](#levels-of-testing)
+  - [The Testing Pyramid](#the-testing-pyramid)
+  - [Unit Tests](#unit-tests)
+  - [Integration Tests](#integration-tests)
+  - [End-to-End Tests](#end-to-end-tests)
+  - [Snapshot Testing](#snapshot-testing)
+  - [Manual Testing](#manual-testing)
+- [Other Testing](#other-testing)
+  - [Penetration Testing](#penetration-testing)
+  - [Vulnerability Testing](#vulnerability-testing)
+- [Testing Requirements](#testing-requirements)
+  - [Platform / Browser requirements](#platform--browser-requirements)
+- [Accessibility Requirements](#accessibility-requirements)
+- [Issue Logging and Handling](#issue-logging-and-handling)     
+    - [Triage](#triage)     
+    - [Feature Requests ](#feature-requests)    
+    - [Tech Debt](#tech-debt)     
+    - [Writing a Unit Test](#writing-a-unit-test)
+- [Testing Tooling](#testing-tooling)     
+    - [Automation](#automation)     
+    - [Manual Testing aids](#manual-testing-aids)
+
 ## Proposed Testing Flow
 
 In the spirit of pursuing high-quality quick delivery, we are proposing the following process for each ticket:
@@ -108,6 +149,9 @@ To avoid negatively affecting Production performance it would be wise to test pe
 
 ## Levels of Testing
 ### The Testing Pyramid
+
+![diagram of the testing pyramid](./test_pyramid.png)
+
 Popularised by Mike Cohn, the idea of the Test Pyramid is fundamental to our approach to testing within Red Badger. Through previous experience and research, we have come to believe that the principles behind this model are of vital importance for a successful delivery built upon a solid foundation of quality assurance. As automation plays an increasingly important role in enabling continuous integration and delivery, it is vital that this area is given the highest attention.
 
 ### Unit Tests
