@@ -1,6 +1,17 @@
 FROM node:12
 
-COPY . /src
-RUN cd /src && npm install
-EXPOSE 80
-CMD ["node", "/src/server.js"]
+# Setting working directory. All the path will be relative to WORKDIR
+WORKDIR /usr/src/app
+
+# Installing dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copying source files
+COPY . .
+
+# Building app
+RUN npm run build
+
+# Running the app
+CMD [ "npm", "start" ]
