@@ -1,4 +1,3 @@
-
 # Setup rust build environment
 FROM rust:1.43.1 AS build-context
 

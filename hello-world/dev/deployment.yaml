@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +15,7 @@ spec:
       serviceAccountName: hello-world
       containers:
         - name: hello-world
-          image: citracytest.azurecr.io/platform/hello-world
+          image: citracytest.azurecr.io/hello-world
           ports:
             - containerPort: 3030
           resources:
