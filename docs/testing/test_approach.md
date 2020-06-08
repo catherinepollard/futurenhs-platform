@@ -268,22 +268,22 @@ We might need to get an accessibility audit according to this https://www.gov.uk
 ## Issue Logging and Handling
 Anyone who discovers an issue should feel free to submit it on GitHub. This way the issues sit alongside the codebase and can be resolved automatically upon a relevant bug-fix being merged. When an issue is logged it should be added to the project backlog for prioritisation. If the person logging an issue feels it has enough urgency they should raise it with the product owner/wider team for discussion. Otherwise, regular ‘triage’ sessions will be held to discuss the bug backlog and whether there are any issues that can be brought into the current stream of work to be fixed.
 
-#### Triage
+### Triage
 > “(In a hospital) the process of deciding how seriously ill or injured a person is, so that the most serious cases can be treated first”
 
 A triage session is where various stakeholders for the project come together to go through the issue backlog to determine their severity and prioritise them for fixing going forwards. 
 
-#### Feature Requests 
+### Feature Requests 
 Anyone within the team should feel free to make suggestions for improving the quality of a feature or the platform as a whole. This can be done in the form of a ‘feature request’ and should be logged in the same manner as a bug. It should then go into the backlog along with other issues and be triaged accordingly. If the feature request is deemed to have some value then it can be spun out into a ticket for further discovery or development.
 
-#### Tech Debt
+### Tech Debt
 Tech Debt should also be logged as an Issue, so it can be triaged accordingly. We will want to keep on top of Tech Debt so that it doesn’t get out of control and start to negatively impact our ability to deliver a quality platform.
 
-#### Writing a Unit Test
+### Writing a Unit Test
 It has been suggested that when a bug is logged that the QA write a unit test for the issue. This will aid any developer fixing it, and also help to build a regression suite to ensure that the issue does not reappear in the future. It will be up to the QA to decide if the bug requires one and if their skills are up to the task.
 
 ## Testing Tooling
-#### Automation
+### Automation
 
 - Unit/Integration tests - Jest
 - E2E - Cypress
@@ -300,6 +300,6 @@ Honourable mentions:
 - Puppeteer (Headless Chrome)
 - Gatling (Load testing)
 
-#### Manual Testing aids
+### Manual Testing aids
 Some kind of VM for testing Internet Explorer.
 Browserstack will be essential for testing cross-platform. 
