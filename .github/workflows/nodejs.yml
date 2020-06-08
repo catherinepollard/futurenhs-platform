@@ -48,26 +48,5 @@ jobs:
       - name: "Build & Push image"
         run: |
           cd frontend
-          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
-          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend:${{ github.sha }}
-      # Set the target AKS cluster.
-      - uses: Azure/aks-set-context@v1
-        with:
-          kubeconfig: ${{ secrets.KUBE_CONFIG }}
-
-      - uses: Azure/k8s-create-secret@v1
-        with:
-          container-registry-url: CItracytest.azurecr.io
-          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
-          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-          secret-name: "demo-k8s-secret"
-        id: create-secret
-
-      - uses: Azure/k8s-deploy@v1
-        with:
-          manifests: |
-            manifests/deployment.yml
-          images: |
-            CItracytest.azurecr.io/k8sdemo:${{ github.sha }}
-          imagepullsecrets: |
-            demo-k8s-secret
+          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend -t latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend
