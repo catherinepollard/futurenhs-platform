@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-futurenhs
+  labels:
+    app: futurenhs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: futurenhs
+  template:
+    metadata:
+      labels:
+        app: futurenhs
+    spec:
+      containers:
+        - name: futurenhs
+          image: futurenhs:1.14.2
+          ports:
+            - containerPort: 80
