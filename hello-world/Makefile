@@ -1,5 +1,5 @@
 app := hello-world
-image := fnhs.azurecr.io/platform/$(app)
+image := citracytest.azurecr.io/$(app)
 tag := latest
 
 .PHONY: default
