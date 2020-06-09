@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: citracytest.azurecr.io/frontend
+          image: fnhsproduction.azurecr.io/frontend
           ports:
             - containerPort: 3000
           resources:
