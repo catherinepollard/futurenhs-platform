@@ -1,0 +1,39 @@
+name: hello-world
+
+on:
+  push:
+    branches:
+      - "**"
+    paths:
+      - hello-world/**
+      - .github/workflows/hello-world.yml
+
+env:
+  IMAGE: fnhsproduction.azurecr.io/platform/hello-world
+
+jobs:
+  build-and-test:
+    name: Build, Test and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v2
+        with:
+          path: platform
+
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: "Login to docker"
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: "Build & Push image"
+        run: |
+          cd platform/hello-world
+          make docker-build
+          make docker-push
