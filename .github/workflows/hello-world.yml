@@ -9,7 +9,7 @@ on:
       - .github/workflows/hello-world.yml
 
 env:
-  IMAGE: citracytest.azurecr.io/platform/hello-world
+  IMAGE: fnhsproduction.azurecr.io/platform/hello-world
 
 jobs:
   build-and-test:

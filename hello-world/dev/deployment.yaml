@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: citracytest.azurecr.io/hello-world
+          image: fnhsproduction.azurecr.io/hello-world
           ports:
             - containerPort: 3030
           resources:
