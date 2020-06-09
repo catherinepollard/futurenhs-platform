@@ -11,7 +11,9 @@ RUN yarn install --frozen-lockfile
 COPY . .
 
 # Building app
-RUN npm run build
+RUN yarn lint
+RUN yarn test
+RUN yarn build
 
 # Running the app
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
