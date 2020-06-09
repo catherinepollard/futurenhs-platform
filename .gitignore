@@ -2,4 +2,4 @@
 .terraform/
 terraform.tfvars
 
-target
+target/
