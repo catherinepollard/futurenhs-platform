@@ -12,7 +12,6 @@ spec:
       labels:
         app: hello-world
     spec:
-      serviceAccountName: hello-world
       containers:
         - name: hello-world
           image: citracytest.azurecr.io/hello-world

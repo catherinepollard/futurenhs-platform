@@ -32,10 +32,6 @@ jobs:
           login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      - name: "Print current directory"
-        run: |
-          pwd
-          ls -la
       - name: "Build & Push image"
         run: |
           cd platform/hello-world
