@@ -4,8 +4,8 @@ FROM node:12
 WORKDIR /usr/src/app
 
 # Installing dependencies
-COPY package*.json ./
-RUN npm install
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
 # Copying source files
 COPY . .
