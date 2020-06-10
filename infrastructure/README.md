@@ -131,4 +131,6 @@ as opposed to sharing a staging environment.
    terraform destroy
    ```
 
-   At the same time, delete ./infrastructure/environments/dev/.terraform folder as it caches your existing terraform setup and if left untouched will create an error next time you try to spin up a new cluster.
+## Troubleshooting
+
+1. If an error occurs when applying the terroform it is possible that there is a cached version of an existing terraform set up. You can overcome this by deleting the ./infrastructure/environments/dev/ folder and trying again.
