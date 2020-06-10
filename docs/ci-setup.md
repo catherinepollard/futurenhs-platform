@@ -1,6 +1,6 @@
 # 1. Setting registry and cluster
 
-The CI is set up in the 'fnhsproduction' registry in the 'production' cluster.
+GitHub Actions is set up to push docker images to the 'fnhsproduction' registry in the 'production' cluster.
 
 If you want to push to another registry or another cluster then a new set of secrets need to be generated and edited in the GitHub repository.
 
