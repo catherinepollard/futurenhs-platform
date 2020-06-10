@@ -14,6 +14,8 @@ We aim to deliver a high quality platform and migrate users in the shortest time
   - [Branch Environments](#branch-environments)
   - [Test Data](#test-data)
 - [Feature Flags and Staging](#feature-flags-and-staging)
+  - [Feature Flags](#feature-flags)
+  - [No Staging Environment](#no-staging-environment)
   - [Infrastructure Changes](#infrastructure-changes)
   - [Performance Testing](#performance-testing)
 - [Levels of Testing](#levels-of-testing)
@@ -78,7 +80,12 @@ Again these would use a snapshot of anonymised Production data to facilitate tes
 As mentioned above, to provide data used in the local branch environments we propose using actual Production data wherever possible. Obviously this presents issues surrounding privacy. To resolve this we propose anonymising everything at the point of snapshotting the Production data. This would entail stripping out any identifying information that could link data back to the person it was posted by or about. 
 
 ## Feature Flags and Staging
-Please refer to the [Feature Flags and No Staging Environment](../architecture/decisions/feature_flags_and_no_staging_env.md) architectural decision record for more information.
+
+### Feature Flags
+We intend to use Feature Flagging to deploy code safely to Production. Please refer to the [Feature Flags](../architecture/decisions/0003_feature_flags.md) architectural decision record for more information.
+
+### No Staging Environment
+We are proposing to forgo a Staging Environment - please refer to the [No Staging Environment](../architecture/decisions/0004_no_staging_env.md) architectural decision record for more information.
 
 ### Infrastructure Changes
 When it comes to making big infrastructure changes it is likely that we would opt to spin up a new environment entirely to deploy to rather than going straight into Production with a feature flag. This would mitigate the risk that the infrastructure changes might cause catastrophic failures in the live Production environment. 
