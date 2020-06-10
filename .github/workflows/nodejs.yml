@@ -10,24 +10,18 @@ on:
       - .github/workflows/nodejs.yml
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 12
-        uses: actions/setup-node@v1
+      - name: "Login to docker"
+        uses: azure/docker-login@v1
         with:
-          node-version: "12"
-      - name: Install yarn
-        run: npm install -g yarn
-      - name: Install dependencies
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: "Build & Push image"
         run: |
           cd frontend
-          yarn install --frozen-lockfile
-      - name: yarn test & build
-        run: |
-          cd frontend
-          yarn lint
-          yarn test
-          yarn build
+          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend -t latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/frontend

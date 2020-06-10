@@ -23,3 +23,10 @@ module platform {
   environment = "production"
   location    = var.location
 }
+
+resource "azurerm_container_registry" "acr" {
+  name                = "fnhsproduction"
+  resource_group_name = module.platform.resource_group_name
+  location            = var.location
+  sku                 = "Basic"
+}
