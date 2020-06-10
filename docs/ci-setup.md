@@ -9,4 +9,4 @@ Follow the instructions here for [secret generation](https://docs.microsoft.com/
 # 2. Authenticate with Azure Container Registry from Azure Kubernetes Service
 
 Once there is a change in registry or cluster you will need to re-establish authentication between ACR and AKS.
-[Configure ACR integration for existing AKS clusters](https://docs.microsoft.com/en-us/azure/aks/cluster-container-registry-integration)
+[Configure ACR integration for existing AKS clusters](https://docs.microsoft.com/en-us/azure/aks/cluster-container-registry-integration).
