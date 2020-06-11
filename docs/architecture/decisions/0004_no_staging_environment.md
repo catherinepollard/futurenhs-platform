@@ -1,10 +1,10 @@
-# 3. Observability tools and strategy
+# 4. No Staging
 
 Date: 2020-06-10
 
 ## Status
 
-Awaiting Approval
+Approved
 
 ## Context
 
