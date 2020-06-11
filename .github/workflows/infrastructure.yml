@@ -1,0 +1,16 @@
+name: infrastructure
+
+on:
+  push:
+    paths:
+      - infrastructure/**
+      - .github/workflows/infrastructure.yml
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: terraform fmt -recursive -check infrastructure
+      - run: terraform validate infrastructure/environments/dev
+      - run: terraform validate infrastructure/environments/production

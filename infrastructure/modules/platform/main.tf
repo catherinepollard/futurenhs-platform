@@ -3,7 +3,7 @@ resource "azurerm_resource_group" "platform" {
   location = var.location
 
   tags = {
-    environment = var.environment
+ environment = var.environment
   }
 }
 
