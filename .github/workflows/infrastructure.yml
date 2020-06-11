@@ -11,6 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: terraform fmt -recursive -check infrastructure
-      - run: terraform validate infrastructure/environments/dev
-      - run: terraform validate infrastructure/environments/production
+      - name: Check Terraform format
+        run: terraform fmt -recursive -check
+        working-directory: infrastructure
+      - name: Validate Terraform of dev environment
+        run: |
+          terraform init -backend=false
+          terraform validate
+        working-directory: infrastructure/environments/dev
+      - name: Validate Terraform of production environment
+        run: |
+          terraform init -backend=false
+          terraform validate
+        working-directory: infrastructure/environments/production
