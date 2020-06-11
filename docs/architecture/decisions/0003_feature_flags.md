@@ -4,7 +4,7 @@ Date: 2020-06-10
 
 ## Status
 
-Awaiting Approval
+Approved
 
 ## Context
 
