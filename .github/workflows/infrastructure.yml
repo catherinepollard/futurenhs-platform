@@ -1,0 +1,29 @@
+name: infrastructure
+
+on:
+  push:
+    paths:
+      - infrastructure/**
+      - .github/workflows/infrastructure.yml
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.12.25
+      - name: Check Terraform format
+        run: terraform fmt -recursive -check
+        working-directory: infrastructure
+      - name: Validate Terraform of dev environment
+        run: |
+          terraform init -backend=false
+          terraform validate
+        working-directory: infrastructure/environments/dev
+      - name: Validate Terraform of production environment
+        run: |
+          terraform init -backend=false
+          terraform validate
+        working-directory: infrastructure/environments/production
