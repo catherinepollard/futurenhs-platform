@@ -2,7 +2,7 @@
 
 We use [Terraform](https://www.terraform.io/) to build our environments.
 
-## Installation Instructions
+## Prerequisites
 
 1. Install Terraform:
 
@@ -54,7 +54,7 @@ We use [Terraform](https://www.terraform.io/) to build our environments.
    brew install linkerd
    ```
 
-## Development Environment Setup
+## Development Environment
 
 Infrastructure is set up so that each developer can create their own instance of the environment in Azure,
 as opposed to sharing a staging environment.
@@ -75,18 +75,6 @@ as opposed to sharing a staging environment.
    cd infrastructure/environments/dev
    ```
 
-1. Follow the onscreen instructions to create the terraform.tfvars file.
-
-   The contents of the file should still be printed on the screen.
-
-   Below is an example of what it would likely look like:
-
-   ```hcl-terraform
-   resource_group_name="tfstatejohn"
-   storage_account_name="fnhstfstatedevjohn"
-   USERNAME="john"
-   ```
-
 1. Run Terraform Init using the vars file you just created:
 
    ```bash
@@ -103,6 +91,14 @@ as opposed to sharing a staging environment.
 
    ```bash
    terraform apply
+   ```
+
+1. Give the Kubernetes cluster permissions to pull images from our Docker registry.
+
+   As with step 2, if your name is **John**, your command will be:
+
+   ```bash
+   az aks update -n dev-john -g platform-dev-john --attach-acr "/subscriptions/75173371-c161-447a-9731-f042213a19da/resourceGroups/platform-production/providers/Microsoft.ContainerRegistry/registries/fnhsproduction"
    ```
 
 1. In order to use Kubernetes CLI (kubectl) commands, you need to pull the credentials from the server.
