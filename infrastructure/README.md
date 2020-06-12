@@ -127,6 +127,36 @@ as opposed to sharing a staging environment.
    terraform destroy
    ```
 
+## Production environment
+
+Production is a long-lived environment. To make changes, follow these steps.
+
+The `ARM_SUBSCRIPTION_ID` environment variable is needed if you're using Azure CLI authentication and production is not your default subscription (which is recommended).
+
+1. Change directory into the dev environment folder:
+
+   ```bash
+   cd infrastructure/environments/production
+   ```
+
+1. Run Terraform Init using the vars file you just created:
+
+   ```bash
+   ARM_SUBSCRIPTION_ID=75173371-c161-447a-9731-f042213a19da terraform init
+   ```
+
+1. Create an execution plan:
+
+   ```bash
+   ARM_SUBSCRIPTION_ID=75173371-c161-447a-9731-f042213a19da terraform plan
+   ```
+
+1. After verifying the plan above, apply changes. The infrastructure will be created in Azure.
+
+   ```bash
+   ARM_SUBSCRIPTION_ID=75173371-c161-447a-9731-f042213a19da terraform apply
+   ```
+
 ## Troubleshooting
 
 1. If an error occurs when applying the terroform it is possible that there is a cached version of an existing terraform set up. You can overcome this by deleting the ./infrastructure/environments/dev/.terraform/ folder and trying again.
