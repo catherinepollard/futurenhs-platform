@@ -1,11 +1,7 @@
-locals {
-  subscription_id = "75173371-c161-447a-9731-f042213a19da"
-}
-
 provider "azurerm" {
   version = "=2.14.0"
   features {}
-  subscription_id = local.subscription_id
+  subscription_id = "75173371-c161-447a-9731-f042213a19da"
 }
 
 provider "random" {
