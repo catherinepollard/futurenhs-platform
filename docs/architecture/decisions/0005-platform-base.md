@@ -46,7 +46,7 @@ Benefits
 
 Risks
 
-- More features than we need leads to cognitive overhead for users and developers.
+- Redundant features add cognitive overhead for users and developers.
 - Initial overhead for understanding code base.
 - Need to add "workspace" functionality, which could be invasive.
 
@@ -69,7 +69,7 @@ Benefits
 
 Risks
 
-- More features than we need leads to cognitive overhead for users and developers.
+- Redundant features add cognitive overhead for users and developers.
 - Initial overhead for understanding code base.
 - Need to add "workspace" functionality, which could be invasive.
 - Need to change content ownership from user-owned to community-owned, which could be invasive.
@@ -99,7 +99,7 @@ Benefits
 
 Risks
 
-- More features than we need leads to cognitive overhead for users and developers.
+- Redundant features add cognitive overhead for users and developers.
 - Initial overhead for understanding code base.
 - The forum aspect of the software isn't really the core of the platform, so we would be building a lot of things via plugins. This may be hard to maintain.
 - Seems hard to run/operate.
