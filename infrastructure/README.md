@@ -121,6 +121,8 @@ as opposed to sharing a staging environment.
    linkerd dashboard &
    ```
 
+1. install argo CD (insert instructions here with a script)
+
 1. To reduce infrastructure costs for the NHS, please destroy your environment when you no longer need it.
 
    ```bash
