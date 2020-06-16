@@ -1,5 +1,5 @@
 provider "azurerm" {
-  version = "=2.11.0"
+  version = "=2.14.0"
   features {}
   subscription_id = "75173371-c161-447a-9731-f042213a19da"
 }
@@ -29,4 +29,11 @@ resource "azurerm_container_registry" "acr" {
   resource_group_name = module.platform.resource_group_name
   location            = var.location
   sku                 = "Basic"
+}
+
+resource "azurerm_role_assignment" "acrpull_cluster" {
+  scope                            = azurerm_container_registry.acr.id
+  role_definition_name             = "AcrPull"
+  principal_id                     = module.platform.cluster_identity_principal_id
+  skip_service_principal_aad_check = true
 }
