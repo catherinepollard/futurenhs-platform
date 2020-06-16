@@ -1,7 +1,9 @@
 name: infrastructure
 
 on:
-  push:
+  pull_request:
+    branches:
+      - master
     paths:
       - infrastructure/**
       - .github/workflows/infrastructure.yml
