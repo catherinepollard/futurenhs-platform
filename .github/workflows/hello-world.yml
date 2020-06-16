@@ -1,9 +1,9 @@
 name: hello-world
 
 on:
-  push:
+  pull_request:
     branches:
-      - "**"
+      - master
     paths:
       - hello-world/**
       - .github/workflows/hello-world.yml
