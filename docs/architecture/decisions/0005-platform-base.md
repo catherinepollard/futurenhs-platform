@@ -8,7 +8,7 @@ Proposed
 
 ## Context
 
-### Problem Statement
+### Problem statement
 
 We want to build an open-source collaboration platform to succeed the current FutureNHS platform.
 
@@ -16,7 +16,7 @@ We want to build an open-source collaboration platform to succeed the current Fu
 
 It may be quicker to build on top of an existing open-source hub.
 
-### Current Situation
+### Current situation
 
 The client is currently using Kahootz and they are not happy with it. This is because it is expensive, proprietary, and the supplier is very slow to add new features.
 We have a team who are familiar with TypeScript and React.
@@ -110,8 +110,8 @@ More detailed analysis lives [in google sheets](https://docs.google.com/spreadsh
 
 ## Decision
 
-TODO
+We will go with option 1: extend from Next.js starter app.
 
 ## Consequences
 
-TODO
+See risks and benefits discussed in [Context](#context).
