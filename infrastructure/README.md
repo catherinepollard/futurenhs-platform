@@ -127,10 +127,6 @@ as opposed to sharing a staging environment.
    ./install-argo-cd.sh
    ```
 
-   ```bash
-   ./configure-argo-cd.sh
-   ```
-
    If you want to view the Argo CD UI, do:
 
    ```bash
