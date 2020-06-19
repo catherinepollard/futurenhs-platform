@@ -18,7 +18,6 @@ It may be quicker to build on top of an existing open-source hub.
 
 ### Current situation
 
-The client is currently using Kahootz and they are not happy with it. This is because it is expensive, proprietary, and the supplier is very slow to add new features.
 We have a team who are familiar with TypeScript and React.
 
 ### Option 1 - Extend from [Next.js](https://nextjs.org/) starter app (recommended)
