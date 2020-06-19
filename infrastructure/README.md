@@ -121,7 +121,7 @@ as opposed to sharing a staging environment.
    linkerd dashboard &
    ```
 
-1. install Argo CD [ArgoCD](https://argoproj.github.io/argo-cd/) (insert instructions here with a script) run the `install-argo-cd.sh` script that can be found within `infrastructure/scripts` directory.
+1. To install [Argo CD](https://argoproj.github.io/argo-cd/) run the `install-argo-cd.sh` script that can be found within `infrastructure/scripts` directory.
 
    ```bash
    ./install-argo-cd.sh
