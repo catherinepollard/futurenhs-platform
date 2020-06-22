@@ -17,5 +17,5 @@ spec:
       paths:
         - path: /
           backend:
-            serviceName: hello-world-cluster-ip-service
+            serviceName: hello-world
             servicePort: 3030

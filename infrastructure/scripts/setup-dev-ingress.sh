@@ -12,7 +12,8 @@ mkdir -p "$CURRENT_DIR/../environments/dev/k8s/.temp"
 
 echo " > Combine Ingress Manifests"
 kustomize build "$CURRENT_DIR/../environments/dev/k8s/ingress" > "$CURRENT_DIR/../environments/dev/k8s/.temp/ingress.yaml"
-kustomize build "$CURRENT_DIR/../environments/dev/k8s/certificate" > "$CURRENT_DIR/../environments/dev/k8s/.temp/certificate.yaml"
+kustomize build "$CURRENT_DIR/../environments/dev/k8s/certificate/issuer" > "$CURRENT_DIR/../environments/dev/k8s/.temp/certificate-issuer.yaml"
+kustomize build "$CURRENT_DIR/../environments/dev/k8s/certificate/manager" > "$CURRENT_DIR/../environments/dev/k8s/.temp/certificate-manager.yaml"
 
 echo " > Set vars in build file"
 sed -i "" "s/--USERNAME--/$NAME/g" "$CURRENT_DIR/../environments/dev/k8s/.temp/ingress.yaml"
@@ -30,14 +31,8 @@ kubectl apply -f "$CURRENT_DIR/../../hello-world/dev"
 echo " > Setup Ingress Service"
 kubectl apply -f "$CURRENT_DIR/../environments/dev/k8s/.temp/ingress.yaml"
 
-echo " > Create cert-manager namespace"
-kubectl create ns cert-manager
-
-echo " > Add Jetstack repos to Helm"
-helm repo add jetstack https://charts.jetstack.io
-
-echo " > Install cert-manager from Helm"
-helm install cert-manager --namespace cert-manager jetstack/cert-manager
+echo " > Setup Certificate Manager"
+kubectl apply -f "$CURRENT_DIR/../environments/dev/k8s/.temp/certificate-manager.yaml"
 
 echo "After a minute or two, you will be able to browse to:"
 echo "https://$NAME.$REGION.cloudapp.azure.com/hello/$NAME"
