@@ -75,7 +75,7 @@ as opposed to sharing a staging environment.
 
 1. Set **your name** and email as variables in your terminal, because we'll need to use it several times
 
-    If your name is **John** and you work for the **NHS**, your command might be as follows:
+    If your name is **John** and you work for the **NHS**, your commands might be as follows:
     
     ```bash
     FNHSNAME=john
