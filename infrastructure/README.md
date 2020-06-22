@@ -73,7 +73,7 @@ as opposed to sharing a staging environment.
 
 1. Clone the FutureNHS Platform.
 
-1. Set **your name** and email as variables in your terminal, because we'll need to use it several times
+1. Set **your name** and **email** as variables in your terminal, because we'll need to use it several times
 
     If your name is **John** and you work for the **NHS**, your commands might be as follows:
     
@@ -114,10 +114,8 @@ as opposed to sharing a staging environment.
 
 1. Give the Kubernetes cluster permissions to pull images from our Docker registry.
 
-   As with step 2, if your name is **John**, your command will be:
-
    ```bash
-   az aks update -n dev-john -g platform-dev-john --attach-acr "/subscriptions/75173371-c161-447a-9731-f042213a19da/resourceGroups/platform-production/providers/Microsoft.ContainerRegistry/registries/fnhsproduction"
+   az aks update -n dev-$FNHSNAME -g platform-dev-$FNHSNAME --attach-acr "/subscriptions/75173371-c161-447a-9731-f042213a19da/resourceGroups/platform-production/providers/Microsoft.ContainerRegistry/registries/fnhsproduction"
    ```
 
 1. In order to use Kubernetes CLI (kubectl) commands, you need to pull the credentials from the server.
