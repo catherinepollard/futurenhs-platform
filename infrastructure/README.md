@@ -121,6 +121,28 @@ as opposed to sharing a staging environment.
    linkerd dashboard &
    ```
 
+1. To install [Argo CD](https://argoproj.github.io/argo-cd/) run the `install-argo-cd.sh` script that can be found within `infrastructure/scripts` directory.
+
+   ```bash
+   ./install-argo-cd.sh
+   ```
+
+   If you want to view the Argo CD UI, do:
+
+   ```bash
+   kubectl port-forward svc/argocd-server -n argocd 8080:443
+   ```
+
+   and browse to http://localhost:8080.
+
+   If you want to see the next.js frontend app UI, do:
+
+   ```bash
+   kubectl port-forward deployments/frontend 3000
+   ```
+
+   and browse to http://localhost:3000.
+
 1. To reduce infrastructure costs for the NHS, please destroy your environment when you no longer need it.
 
    ```bash
