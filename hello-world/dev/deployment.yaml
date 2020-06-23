@@ -38,3 +38,6 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 20
             timeoutSeconds: 30
+          env:
+          - name: INSTRUMENTATION_KEY
+            value: ""
