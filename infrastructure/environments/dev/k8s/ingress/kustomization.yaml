@@ -4,4 +4,5 @@ resources:
   - ingress-install.yaml
   - ingress-service.yaml
 patchesStrategicMerge:
-  - dns-patch.yaml
+  - patch-dns.yaml
+  - patch-replica.yaml

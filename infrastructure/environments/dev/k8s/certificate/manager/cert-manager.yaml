@@ -1,3 +1,4 @@
+# helm template cert-manager --namespace cert-manager jetstack/cert-manager --set installCRDs=true
 ---
 # Source: cert-manager/templates/cainjector-serviceaccount.yaml
 apiVersion: v1

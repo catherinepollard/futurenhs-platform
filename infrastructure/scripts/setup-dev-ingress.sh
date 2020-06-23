@@ -20,10 +20,7 @@ sed -i "" "s/--USERNAME--/$NAME/g" "$CURRENT_DIR/../environments/dev/k8s/.temp/i
 sed -i "" "s/--DNS_PREFIX--/$NAME/g" "$CURRENT_DIR/../environments/dev/k8s/.temp/ingress.yaml"
 sed -i "" "s/--REGION--/$REGION/g" "$CURRENT_DIR/../environments/dev/k8s/.temp/ingress.yaml"
 sed -i "" "s/--EMAIL--/$EMAIL/g" "$CURRENT_DIR/../environments/dev/k8s/.temp/ingress.yaml"
-sed -i "" "s/--USERNAME--/$NAME/g" "$CURRENT_DIR/../environments/dev/k8s/.temp/certificate.yaml"
-sed -i "" "s/--DNS_PREFIX--/$NAME/g" "$CURRENT_DIR/../environments/dev/k8s/.temp/certificate.yaml"
-sed -i "" "s/--REGION--/$REGION/g" "$CURRENT_DIR/../environments/dev/k8s/.temp/certificate.yaml"
-sed -i "" "s/--EMAIL--/$EMAIL/g" "$CURRENT_DIR/../environments/dev/k8s/.temp/certificate.yaml"
+sed -i "" "s/--EMAIL--/$EMAIL/g" "$CURRENT_DIR/../environments/dev/k8s/.temp/certificate-issuer.yaml"
 
 echo " > Setup Hello World Service"
 kubectl apply -f "$CURRENT_DIR/../../hello-world/dev"
