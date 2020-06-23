@@ -91,11 +91,11 @@ resource "azurerm_log_analytics_workspace" "cluster" {
   }
 }
 
-resource "azurerm_application_insights" "example" {
+resource "azurerm_application_insights" "app_insights" {
   name                = "cluster-${var.environment}"
   location            = var.location
   resource_group_name = azurerm_resource_group.platform.name
-  application_type    = "web"
+  application_type    = "other"
 }
 
 resource "azurerm_public_ip" "public_ip" {
