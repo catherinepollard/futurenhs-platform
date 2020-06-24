@@ -143,6 +143,10 @@ as opposed to sharing a staging environment.
 
    and browse to http://localhost:3000.
 
+1.  Apply the ConfigMap for Azure Monitor for Containers to collect data in the Log Analytics workspace.  The ConfigMap can be found in `infrastructure/kubernetes/logging` directory.
+   ```bash
+   kubectl create configmap --from-file= container-azm-ms-agentconfig.yaml
+
 1. To reduce infrastructure costs for the NHS, please destroy your environment when you no longer need it.
 
    ```bash

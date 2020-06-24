@@ -768,7 +768,6 @@ dependencies = [
  "tokio",
  "tracing",
  "tracing-futures",
- "tracing-log",
  "tracing-opentelemetry",
  "tracing-subscriber",
 ]
