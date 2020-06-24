@@ -38,3 +38,6 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 20
             timeoutSeconds: 30
+          env:
+          - name: INSTRUMENTATION_KEY
+            value: "" # Application Insights Instrumentation Key.  Printed after applying dev or production Terraform environment.
