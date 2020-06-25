@@ -1,8 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ingress-install.yaml
-  - ingress-service.yaml
+  - ../../base/
 patchesStrategicMerge:
-  - patch-dns.yaml
-  - patch-replica.yaml
+  - ingress-nginx-patch-replica.yaml
+  - ingress-patch-dns.yaml
+
