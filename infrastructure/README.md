@@ -54,12 +54,6 @@ We use [Terraform](https://www.terraform.io/) to build our environments.
    brew install linkerd
    ```
    
-1. Install [Helm](https://helm.sh/docs/intro/install/):
-
-   ```bash
-   brew install helm
-   ```
-
 1. Install [Kustomize](https://github.com/kubernetes-sigs/kustomize):
 
    ```bash

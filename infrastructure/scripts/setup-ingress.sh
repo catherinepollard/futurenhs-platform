@@ -7,11 +7,12 @@ EMAIL="${2:?"Please enter your email address as second argument"}"
 ENV="${3:-dev}"
 REGION="${4:-westeurope}"
 CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-DNS_PREFIX=$NAME
+DNS_PREFIX=fnhs-dev-$NAME
 if [ $ENV == "prod" ]; then
   DNS_PREFIX="fnhs"
 fi
 
+# TODO Remove this when Argo CD is setup to deploy the hello world service
 echo " > Setup Hello World Service"
 # hello-world/dev used because currently no prod version
 kubectl apply -f "$CURRENT_DIR/../../hello-world/dev"
