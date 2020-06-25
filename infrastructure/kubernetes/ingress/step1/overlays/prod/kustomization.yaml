@@ -3,4 +3,6 @@ kind: Kustomization
 resources:
   - ../../base/
 patchesStrategicMerge:
-  - cert-issuer-patch-env.yaml
+  - ingress-nginx-patch-replica.yaml
+  - ingress-patch-dns.yaml
+
