@@ -1,6 +1,5 @@
 "use strict";
 
-const { LogLevel } = require("@opentelemetry/core");
 const { NodeTracerProvider } = require("@opentelemetry/node");
 const { BatchSpanProcessor } = require("@opentelemetry/tracing");
 const { AzureMonitorTraceExporter } = require('@azure/monitor-opentelemetry-exporter');
@@ -16,7 +15,7 @@ const provider = new NodeTracerProvider({
 
 const exporter = new AzureMonitorTraceExporter({
   logger: provider.logger,
-  instrumentationKey: 'a2fa06cc-a1de-4efd-9096-9f99aa23a01c',
+  instrumentationKey: process.env.INSTRUMENTATION_KEY,
 });
 
 provider.register();
