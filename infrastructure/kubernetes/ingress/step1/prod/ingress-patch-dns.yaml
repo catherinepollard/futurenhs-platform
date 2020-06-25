@@ -4,4 +4,4 @@ metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
   annotations:
-    service.beta.kubernetes.io/azure-dns-label-name: --DNS_PREFIX--
+    service.beta.kubernetes.io/azure-dns-label-name: fnhs
