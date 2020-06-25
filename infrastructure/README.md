@@ -112,6 +112,12 @@ as opposed to sharing a staging environment.
    terraform apply
    ```
 
+1. Change directory back to the root of the git repository:
+
+   ```bash
+   cd ../../..
+   ```
+
 1. Give the Kubernetes cluster permissions to pull images from our Docker registry.
 
    ```bash
@@ -160,16 +166,16 @@ as opposed to sharing a staging environment.
 
 1.  Apply the ConfigMap for Azure Monitor for Containers to collect data in the Log Analytics workspace.  The ConfigMap can be found in `infrastructure/kubernetes/logging` directory.
    ```bash
-   kubectl apply -f container-azm-ms-agentconfig.yaml
+   kubectl apply -f infrastructure/kubernetes/logging/container-azm-ms-agentconfig.yaml
    ```
 
 1. Spin up an Ingress Controller with your **name** and **email** as parameters. 
 
     This also creates a Load Balancer with a Public IP, creates a temporary domain, 
-    and registers a TLS Certificate with your temporary domain. 
+    and registers a TLS Certificate with your temporary domain (the domain must be across all azure users in europe)).
     
     ```bash
-    ./infrastructure/scripts/setup-dev-ingress.sh $FNHSNAME $FNHSEMAIL
+    ./infrastructure/scripts/setup-ingress.sh fnhs-dev-$FNHSNAME $FNHSEMAIL
     ```
 
 1. To reduce infrastructure costs for the NHS, please destroy your environment when you no longer need it.
