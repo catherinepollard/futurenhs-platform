@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "cypress": "cypress open"
+  },
+  "dependencies": {
+    "browserstack-local": "^1.4.5",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  }
+}
