@@ -163,15 +163,11 @@ as opposed to sharing a staging environment.
     and registers a TLS Certificate with your temporary domain. 
     
     ```bash
-    ./infrastructure/scripts/setup-dev-ingress.sh $FNHSNAME $FNHSEMAIL
+    ./infrastructure/scripts/setup-ingress.sh $FNHSNAME $FNHSEMAIL
     ```
 
 1. To reduce infrastructure costs for the NHS, please destroy your environment when you no longer need it.
 
-   ```bash
-   ./infrastructure/scripts/teardown-dev-ingress.sh
-   ```
-   
    ```bash
    terraform destroy
    ```
