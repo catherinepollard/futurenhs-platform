@@ -1,7 +1,7 @@
 var webdriver = require("selenium-webdriver");
 var assert = require("assert");
 
-// Might want to create a generic testing user to replace the username and accesskey
+// Need to replace these credentials with env vars
 var userName = "declanslevin1";
 var accessKey = "UEZD7fj328mqvqX6xtxq";
 var browserstackURL =
