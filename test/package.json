@@ -1,12 +1,17 @@
 {
   "scripts": {
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "test": "mocha"
   },
   "dependencies": {
+    "browserstack": "^1.6.0",
     "browserstack-local": "^1.4.5",
     "selenium-webdriver": "^4.0.0-alpha.7"
   },
   "devDependencies": {
-    "cypress": "^4.9.0"
+    "browserstack-runner": "^0.9.1",
+    "chai": "^4.2.0",
+    "cypress": "^4.9.0",
+    "mocha": "^8.0.1"
   }
 }
