@@ -97,14 +97,3 @@ resource "azurerm_application_insights" "app_insights" {
   resource_group_name = azurerm_resource_group.platform.name
   application_type    = "other"
 }
-
-resource "azurerm_public_ip" "public_ip" {
-  name                = "platform-${var.environment}"
-  location            = var.location
-  resource_group_name = azurerm_resource_group.platform.name
-  allocation_method   = "Static"
-
-  tags = {
-    environment = var.environment
-  }
-}
