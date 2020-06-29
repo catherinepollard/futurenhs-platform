@@ -19,7 +19,7 @@ Instead of writing JavaScript directly, we prefer to write [TypeScript](https://
 
 To speed up delivery and reduce maintenance burden we would like to reuse existing NHS frontend libraries. At this time there are two choices:
 
-- [NHS.UK frontend](https://github.com/nhsuk/nhsuk-frontend): The official NHS.UK UI components, built with [Nunjucks](https://mozilla.github.io/nunjucks/) templates, JavaScript and SCSS. The technology forces us to render sites on the server. Using progressive enhancement is relatively easy. However there is little out of the box developer tooling, which means we will have to pay an upfront cost of creating a development and build pipeline.
+- [NHS.UK frontend](https://github.com/nhsuk/nhsuk-frontend): The official NHS.UK UI components, built with [Nunjucks](https://mozilla.github.io/nunjucks/) templates, JavaScript and SCSS. The technology forces us to render sites on the server. Using progressive enhancement is relatively easy. However there is little "out of the box" developer tooling, which means we will have to pay an upfront cost of creating a development and build pipeline.
 - [NHS.UK React Components](https://github.com/NHSDigital/nhsuk-react-components): A port of the NHS.UK frontend to [React](https://reactjs.org/). Our team has existing knowledge in building websites using TypeScript and React. However React is a relatively large JavaScript library. We will have to take extra measures to ensure the website will run on all devices and will be accessible to all users.
 
 ## Decision
