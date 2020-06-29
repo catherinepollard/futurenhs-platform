@@ -53,6 +53,12 @@ We use [Terraform](https://www.terraform.io/) to build our environments.
    ```bash
    brew install linkerd
    ```
+   
+1. Install [Kustomize](https://github.com/kubernetes-sigs/kustomize):
+
+   ```bash
+   brew install kustomize
+   ```
 
 ## Development Environment
 
@@ -61,14 +67,21 @@ as opposed to sharing a staging environment.
 
 1. Clone the FutureNHS Platform.
 
+1. Set **your name** and **email** as variables in your terminal, because we'll need to use it several times
+
+    If your name is **John** and you work for the **NHS**, your commands might be as follows:
+    
+    ```bash
+    FNHSNAME=john
+    FNHSEMAIL=john@nhs.uk
+    ```
+   
 1. Create the new dev environment with **your name** as the parameter.
-
-   If your name is **John**, your command is as follows:
-
-   ```bash
-   ./infrastructure/scripts/create-dev-environment.sh john
-   ```
-
+    
+    ```bash
+    ./infrastructure/scripts/create-dev-environment.sh $FNHSNAME
+    ```
+   
 1. Change directory into the dev environment folder:
 
    ```bash
@@ -95,24 +108,20 @@ as opposed to sharing a staging environment.
 
 1. Give the Kubernetes cluster permissions to pull images from our Docker registry.
 
-   As with step 2, if your name is **John**, your command will be:
-
    ```bash
-   az aks update -n dev-john -g platform-dev-john --attach-acr "/subscriptions/75173371-c161-447a-9731-f042213a19da/resourceGroups/platform-production/providers/Microsoft.ContainerRegistry/registries/fnhsproduction"
+   az aks update -n dev-$FNHSNAME -g platform-dev-$FNHSNAME --attach-acr "/subscriptions/75173371-c161-447a-9731-f042213a19da/resourceGroups/platform-production/providers/Microsoft.ContainerRegistry/registries/fnhsproduction"
    ```
 
 1. In order to use Kubernetes CLI (kubectl) commands, you need to pull the credentials from the server.
-
-   As with step 2, if your name is **John**, your command will be:
-
-   ```bash
-   az aks get-credentials --resource-group platform-dev-john --name dev-john
-   ```
+   
+    ```bash
+    az aks get-credentials --resource-group platform-dev-$FNHSNAME --name dev-$FNHSNAME
+    ``` 
 
 1. To install the [Linkerd](https://linkerd.io/) control plane, run the `install-linkerd.sh` script that can be found within `infrastructure/scripts` directory.
 
    ```bash
-   ./install-linkerd.sh
+   ./infrastructure/scripts/install-linkerd.sh
    ```
 
    Once installed, view the Linkerd dashboard with the following command:
@@ -146,6 +155,16 @@ as opposed to sharing a staging environment.
 1.  Apply the ConfigMap for Azure Monitor for Containers to collect data in the Log Analytics workspace.  The ConfigMap can be found in `infrastructure/kubernetes/logging` directory.
    ```bash
    kubectl apply -f container-azm-ms-agentconfig.yaml
+   ```
+
+1. Spin up an Ingress Controller with your **name** and **email** as parameters. 
+
+    This also creates a Load Balancer with a Public IP, creates a temporary domain, 
+    and registers a TLS Certificate with your temporary domain. 
+    
+    ```bash
+    ./infrastructure/scripts/setup-ingress.sh $FNHSNAME $FNHSEMAIL
+    ```
 
 1. To reduce infrastructure costs for the NHS, please destroy your environment when you no longer need it.
 
@@ -185,4 +204,4 @@ The `ARM_SUBSCRIPTION_ID` environment variable is needed if you're using Azure C
 
 ## Troubleshooting
 
-1. If an error occurs when applying the terroform it is possible that there is a cached version of an existing terraform set up. You can overcome this by deleting the ./infrastructure/environments/dev/.terraform/ folder and trying again.
+1. If an error occurs when applying the terraform it is possible that there is a cached version of an existing terraform set up. You can overcome this by deleting the ./infrastructure/environments/dev/.terraform/ folder and trying again.

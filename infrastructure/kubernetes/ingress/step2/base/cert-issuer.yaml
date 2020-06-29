@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Issuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    email: --EMAIL--
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
