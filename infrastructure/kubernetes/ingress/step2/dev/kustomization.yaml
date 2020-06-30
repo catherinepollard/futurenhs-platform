@@ -9,6 +9,7 @@ patchesJSON6902:
       version: v1beta1
       kind: Ingress
       name: ingress-service
+      namespace: hello-world
 patchesStrategicMerge:
   - ingress-patch-tls.yaml
   - cert-issuer-patch-env.yaml
