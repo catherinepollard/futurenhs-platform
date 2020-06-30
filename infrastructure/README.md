@@ -133,7 +133,28 @@ as opposed to sharing a staging environment.
 1. To install [Argo CD](https://argoproj.github.io/argo-cd/) run the `install-argo-cd.sh` script that can be found within `infrastructure/scripts` directory.
 
    ```bash
-   ./install-argo-cd.sh
+   ./infrastructure/scripts/install-argo-cd.sh
+   ```
+   This will set up Argo CD on your cluster, and install the `argocd` command-line utility.
+
+   The `argocd` command can connect to your kubernetes cluster, but doesn't do this by default. This is quite annoying, so you will probably want to set this environment variable (run this once, and add it to your ~/.profile) 
+   ```bash
+   export ARGOCD_OPTS='--port-forward --port-forward-namespace argocd'
+   ```
+
+   If you want to login, the username is `admin` and the password will be the name of the argocd-server pod, which you can get from:
+   ```bash
+   kubectl get pods -n argocd
+   ```
+
+   ```bash
+   argocd login --username admin --password $(kubectl get pods -n argocd | grep --only-matching 'argocd-server-[^ ]*')
+   ```
+
+   If you are manually making changes, you can apply them like this:
+   ```bash
+   argocd app set hello-world --sync-policy none
+   argocd app sync hello-world --local ./hello-world/manifests --prune
    ```
 
    If you want to view the Argo CD UI, do:
