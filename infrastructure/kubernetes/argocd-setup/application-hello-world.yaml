@@ -4,7 +4,7 @@ metadata:
   name: hello-world
 spec:
   destination:
-    namespace: default
+    namespace: hello-world
     server: https://kubernetes.default.svc
   project: default
   source:
