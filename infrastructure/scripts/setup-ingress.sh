@@ -15,7 +15,7 @@ fi
 # TODO Remove this when Argo CD is setup to deploy the hello world service
 echo " > Setup Hello World Service"
 # hello-world/dev used because currently no prod version
-kubectl apply -f "$CURRENT_DIR/../../hello-world/dev"
+# kubectl apply -f "$CURRENT_DIR/../../hello-world/dev"
 
 echo " > Combine and execute Ingress Manifests (Step 1)"
 kustomize build "$CURRENT_DIR/../kubernetes/ingress/step1/$ENV" --reorder none |
