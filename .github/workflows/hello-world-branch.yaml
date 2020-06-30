@@ -1,4 +1,4 @@
-name: hello-world
+name: hello-world-branch
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - hello-world/**
-      - .github/workflows/hello-world.yml
+      - .github/workflows/hello-world-branch.yaml
 
 env:
   IMAGE: fnhsproduction.azurecr.io/platform/hello-world

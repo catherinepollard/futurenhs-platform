@@ -1,0 +1,72 @@
+name: hello-world-master
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - hello-world/**
+      - .github/workflows/hello-world-master.yaml
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Platform repo
+        uses: actions/checkout@v2
+        with:
+          path: futurenhs-platform
+      - name: "Login to docker"
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: "Build & Push image"
+        run: |
+          cd $GITHUB_WORKSPACE/futurenhs-platform/hello-world
+          TAG="$(git rev-parse --short=7 ${{ github.sha }})"
+          make docker-build tag=${TAG}
+          make docker-push tag=${TAG}
+          DIGEST="$(docker inspect --format='{{index .RepoDigests 0}}' ${{ secrets.REGISTRY_LOGIN_SERVER }}/hello-world:${TAG})"
+          echo ::set-env name=TAG::$TAG
+          echo ::set-env name=DIGEST::$DIGEST
+
+      - name: Clone Deployments repo
+        uses: actions/checkout@v2
+        with:
+          repository: FutureNHS/futurenhs-deployments
+          path: futurenhs-deployments
+          token: ${{secrets.DEPLOYMENT_TOKEN}}
+
+      - name: Copy manifests
+        run: |
+          set -eux
+
+          cd $GITHUB_WORKSPACE/futurenhs-platform/hello-world/manifests
+          mkdir -p $GITHUB_WORKSPACE/futurenhs-deployments/hello-world
+          cp *.yaml $GITHUB_WORKSPACE/futurenhs-deployments/hello-world
+
+      - name: Update image tag and deploy
+        uses: stefanprodan/kube-tools@v1
+        with:
+          kustomize: 3.5.5
+          command: |
+            set -eux
+            cd $GITHUB_WORKSPACE/futurenhs-deployments/hello-world
+
+            kustomize edit set image $DIGEST
+            # TODO create service account, swap out email, update deployment_token secret
+            git config --local user.email "tracy.wu@red-badger.com"
+            git config --local user.name "FutureNHS CI/CD"
+            git add -A
+            git diff-index --quiet HEAD || git commit -am "CI: Update production image for ${TAG}"
+
+            declare -i n
+            n=0
+            until [ $n -ge 5 ]
+            do
+              git push && break
+              n+=1
+              git pull --rebase
+            done

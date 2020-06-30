@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - frontend/**
-      - .github/workflows/frontend-master.yml
+      - .github/workflows/frontend-master.yaml
 
 jobs:
   ci:
@@ -39,12 +39,13 @@ jobs:
           path: futurenhs-deployments
           token: ${{secrets.DEPLOYMENT_TOKEN}}
 
-      - name: Copy deployment.yml
+      - name: Copy manifests
         run: |
           set -eux
 
           cd $GITHUB_WORKSPACE/futurenhs-platform/frontend/manifests
-          cp deployment.yml kustomization.yaml $GITHUB_WORKSPACE/futurenhs-deployments/
+          mkdir -p $GITHUB_WORKSPACE/futurenhs-deployments/frontend
+          cp *.yaml $GITHUB_WORKSPACE/futurenhs-deployments/frontend
 
       - name: Update image tag and deploy
         uses: stefanprodan/kube-tools@v1
@@ -52,7 +53,7 @@ jobs:
           kustomize: 3.5.5
           command: |
             set -eux
-            cd $GITHUB_WORKSPACE/futurenhs-deployments
+            cd $GITHUB_WORKSPACE/futurenhs-deployments/frontend
 
             kustomize edit set image $DIGEST
             # TODO create service account, swap out email, update deployment_token secret
