@@ -5,6 +5,5 @@ metadata:
 spec:
   tls:
     - hosts:
-        - fnhs.--REGION--.cloudapp.azure.com
+        - fnhs.westeurope.cloudapp.azure.com
       secretName: fnhs
-

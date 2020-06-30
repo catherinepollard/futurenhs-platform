@@ -1,4 +1,3 @@
 - op: replace
   path: /spec/rules/0/host
-  value: --DNS_PREFIX--.--REGION--.cloudapp.azure.com
-
+  value: fnhs-dev-tracyw.westeurope.cloudapp.azure.com

@@ -6,6 +6,5 @@ metadata:
 spec:
   tls:
     - hosts:
-        - --DNS_PREFIX--.--REGION--.cloudapp.azure.com
-      secretName: --DNS_PREFIX--
-
+        - fnhs-dev-tracyw.westeurope.cloudapp.azure.com
+      secretName: fnhs-dev-tracyw

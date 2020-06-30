@@ -4,5 +4,8 @@ resources:
   - cert-manager-namespace.yaml
   - cert-manager.yaml
   - ingress-nginx.yaml
+  - cert-issuer.yaml
+  - ingress.yaml
 patchesStrategicMerge:
   - ingress-nginx-patch-replica.yaml
+  - ingress-patch-dns.yaml
