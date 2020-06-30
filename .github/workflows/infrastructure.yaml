@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - infrastructure/**
-      - .github/workflows/infrastructure.yml
+      - .github/workflows/infrastructure.yaml
 
 jobs:
   ci:
