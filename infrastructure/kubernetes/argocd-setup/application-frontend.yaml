@@ -4,7 +4,7 @@ metadata:
   name: frontend
 spec:
   destination:
-    namespace: default
+    namespace: frontend
     server: https://kubernetes.default.svc
   project: default
   source:
