@@ -1,10 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - cert-manager-namespace.yaml
-  - cert-manager.yaml
   - ingress-nginx.yaml
-  - cert-issuer.yaml
+  # - cert-manager-namespace.yaml
+  # - cert-manager.yaml
+  # - cert-issuer.yaml
   - ingress.yaml
 patchesStrategicMerge:
   - ingress-nginx-patch-replica.yaml
