@@ -1,0 +1,53 @@
+name: infrastructure-master
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - infrastructure/**
+      - .github/workflows/infrastructure-master.yaml
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Platform repo
+        uses: actions/checkout@v2
+        with:
+          path: futurenhs-platform
+
+      - name: Clone Deployments repo
+        uses: actions/checkout@v2
+        with:
+          repository: FutureNHS/futurenhs-deployments
+          path: futurenhs-deployments
+          token: ${{secrets.DEPLOYMENT_TOKEN}}
+
+      - name: Copy manifests
+        run: |
+          set -eux
+          mkdir -p $GITHUB_WORKSPACE/futurenhs-deployments/cert-manager
+          cp $GITHUB_WORKSPACE/futurenhs-platform/infrastructure/kubernetes/cert-manager/prod/*.yaml $GITHUB_WORKSPACE/futurenhs-deployments/cert-manager
+          mkdir -p $GITHUB_WORKSPACE/futurenhs-deployments/ingress
+          cp $GITHUB_WORKSPACE/futurenhs-platform/infrastructure/kubernetes/ingress/prod/*.yaml $GITHUB_WORKSPACE/futurenhs-deployments/ingress
+
+      - name: Deploy
+        run: |
+          set -eux
+          cd $GITHUB_WORKSPACE/futurenhs-deployments
+
+          # TODO create service account, swap out email, update deployment_token secret
+          git config --local user.email "tracy.wu@red-badger.com"
+          git config --local user.name "FutureNHS CI/CD"
+          git add -A
+          git diff-index --quiet HEAD || git commit -am "CI: Update cert-manager and ingress"
+
+          declare -i n
+          n=0
+          until [ $n -ge 5 ]
+          do
+            git push && break
+            n+=1
+            git pull --rebase
+          done

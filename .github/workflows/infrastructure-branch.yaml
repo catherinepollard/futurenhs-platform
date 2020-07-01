@@ -1,4 +1,4 @@
-name: infrastructure
+name: infrastructure-branch
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - master
     paths:
       - infrastructure/**
-      - .github/workflows/infrastructure.yaml
+      - .github/workflows/infrastructure-branch.yaml
 
 jobs:
   ci:
