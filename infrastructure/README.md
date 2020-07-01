@@ -53,7 +53,7 @@ We use [Terraform](https://www.terraform.io/) to build our environments.
    ```bash
    brew install linkerd
    ```
-   
+
 1. Install [Kustomize](https://github.com/kubernetes-sigs/kustomize):
 
    ```bash
@@ -67,21 +67,20 @@ as opposed to sharing a staging environment.
 
 1. Clone the FutureNHS Platform.
 
-1. Set **your name** and **email** as variables in your terminal, because we'll need to use it several times
+1. Set **your name** as a variable in your terminal, because we'll need to use it several times
 
-    If your name is **John** and you work for the **NHS**, your commands might be as follows:
-    
-    ```bash
-    FNHSNAME=john
-    FNHSEMAIL=john@nhs.uk
-    ```
-   
+   If your name is **John**, your commands might be as follows:
+
+   ```bash
+   FNHSNAME=john
+   ```
+
 1. Create the new dev environment with **your name** as the parameter.
-    
-    ```bash
-    ./infrastructure/scripts/create-dev-environment.sh $FNHSNAME
-    ```
-   
+
+   ```bash
+   ./infrastructure/scripts/create-dev-environment.sh $FNHSNAME
+   ```
+
 1. Change directory into the dev environment folder:
 
    ```bash
@@ -113,10 +112,10 @@ as opposed to sharing a staging environment.
    ```
 
 1. In order to use Kubernetes CLI (kubectl) commands, you need to pull the credentials from the server.
-   
-    ```bash
-    az aks get-credentials --resource-group platform-dev-$FNHSNAME --name dev-$FNHSNAME
-    ``` 
+
+   ```bash
+   az aks get-credentials --resource-group platform-dev-$FNHSNAME --name dev-$FNHSNAME
+   ```
 
 1. To install the [Linkerd](https://linkerd.io/) control plane, run the `install-linkerd.sh` script that can be found within `infrastructure/scripts` directory.
 
@@ -135,14 +134,17 @@ as opposed to sharing a staging environment.
    ```bash
    ./infrastructure/scripts/install-argo-cd.sh
    ```
+
    This will set up Argo CD on your cluster, and install the `argocd` command-line utility.
 
-   The `argocd` command can connect to your kubernetes cluster, but doesn't do this by default. This is quite annoying, so you will probably want to set this environment variable (run this once, and add it to your ~/.profile) 
+   The `argocd` command can connect to your Kubernetes cluster, but doesn't do this by default. This is quite annoying, so you will probably want to set this environment variable (run this once, and add it to your ~/.profile)
+
    ```bash
    export ARGOCD_OPTS='--port-forward --port-forward-namespace argocd'
    ```
 
    If you want to login, the username is `admin` and the password will be the name of the argocd-server pod, which you can get from:
+
    ```bash
    kubectl get pods -n argocd
    ```
@@ -151,9 +153,19 @@ as opposed to sharing a staging environment.
    argocd login --username admin --password $(kubectl get pods -n argocd | grep --only-matching 'argocd-server-[^ ]*')
    ```
 
-   If you are manually making changes, you can apply them like this:
+   You will probably want to have an Ingress controller and public domain for your cluster. You can get it by synchronizing your local development overlay with Argo CD, which will give you a domain like `https://fnhs-dev-$FNHSNAME.westeurope.cloudapp.azure.com`.
+
    ```bash
+   argocd app sync cert-manager --local ./infrastructure/kubernetes/cert-manager/dev/
+   argocd app sync ingress --local ./infrastructure/kubernetes/ingress/dev/
+   ```
+
+   If you are manually making changes to your applications, you can apply them in a similar way (example based on hello-world app):
+
+   ```bash
+   # Turn of auto-sync. This is not necessary for cert-manager and ingress, because they don't have it enabled in the first place.
    argocd app set hello-world --sync-policy none
+   # Deploy your application
    argocd app sync hello-world --local ./hello-world/manifests --prune
    ```
 
@@ -173,19 +185,11 @@ as opposed to sharing a staging environment.
 
    and browse to http://localhost:3000.
 
-1.  Apply the ConfigMap for Azure Monitor for Containers to collect data in the Log Analytics workspace.  The ConfigMap can be found in `infrastructure/kubernetes/logging` directory.
+1. Apply the ConfigMap for Azure Monitor for Containers to collect data in the Log Analytics workspace. The ConfigMap can be found in `infrastructure/kubernetes/logging` directory.
+
    ```bash
    kubectl apply -f container-azm-ms-agentconfig.yaml
    ```
-
-1. Spin up an Ingress Controller with your **name** and **email** as parameters. 
-
-    This also creates a Load Balancer with a Public IP, creates a temporary domain, 
-    and registers a TLS Certificate with your temporary domain. 
-    
-    ```bash
-    ./infrastructure/scripts/setup-ingress.sh $FNHSNAME $FNHSEMAIL
-    ```
 
 1. To reduce infrastructure costs for the NHS, please destroy your environment when you no longer need it.
 
