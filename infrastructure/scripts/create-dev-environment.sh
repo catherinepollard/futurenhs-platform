@@ -63,5 +63,5 @@ setup_ingress_overlay() {
 	done
 }
 
-setup_terraform
 setup_ingress_overlay
+setup_terraform

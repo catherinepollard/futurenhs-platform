@@ -3,7 +3,14 @@ kind: Kustomization
 bases:
   - ../prod/
 patchesJSON6902:
-  - path: patch-ingress-hello-world.yaml
+  - path: patch-ingress.yaml
+    target:
+      group: extensions
+      version: v1beta1
+      kind: Ingress
+      name: ingress
+      namespace: frontend
+  - path: patch-ingress.yaml
     target:
       group: extensions
       version: v1beta1

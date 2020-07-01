@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-world
+  name: frontend
 spec:
   type: ClusterIP
   selector:
-    app: hello-world
+    app: frontend
   ports:
     - port: 80
-      targetPort: 3030
+      targetPort: 3000
