@@ -5,7 +5,7 @@
 # There was a problem applying the default configuration using Argo CD. The certificate generation job for the admission webhook failed. Argo CD created the job before it created the role and rolebinding for the service account. This meant the job didn't have permissions to read/create Kubernetes secrets. As a workaround we've disabled the admission webhook feature for now.
 #
 # The command used to generate this file was:
-# helm template ingress-nginx -n ingress-nginx ingress-nginx/ingress-nginx --set controller.admissionWebhooks.enabled=false
+# helm template ingress-nginx -n ingress ingress-nginx/ingress-nginx --set controller.admissionWebhooks.enabled=false
 
 ---
 # Source: ingress-nginx/templates/controller-serviceaccount.yaml
@@ -123,7 +123,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: ingress-nginx
-    namespace: ingress-nginx
+    namespace: ingress
 ---
 # Source: ingress-nginx/templates/controller-role.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -238,7 +238,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: ingress-nginx
-    namespace: ingress-nginx
+    namespace: ingress
 ---
 # Source: ingress-nginx/templates/controller-service.yaml
 apiVersion: v1
@@ -308,10 +308,10 @@ spec:
                 - /wait-shutdown
           args:
             - /nginx-ingress-controller
-            - --publish-service=ingress-nginx/ingress-nginx-controller
+            - --publish-service=ingress/ingress-nginx-controller
             - --election-id=ingress-controller-leader
             - --ingress-class=nginx
-            - --configmap=ingress-nginx/ingress-nginx-controller
+            - --configmap=ingress/ingress-nginx-controller
           securityContext:
             capabilities:
                 drop:

@@ -4,7 +4,7 @@ metadata:
   name: ingress
 spec:
   destination:
-    namespace: ingress-nginx
+    namespace: ingress
     server: https://kubernetes.default.svc
   project: default
   source:
