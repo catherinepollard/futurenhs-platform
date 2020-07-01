@@ -37,25 +37,37 @@ describe("Page loads", function () {
     const expected = "[Your Name]";
 
     let result;
-    driver.get("http://127.0.0.1:3000").then(function () {
-      driver
-        .findElement(webdriver.By.css("h1"))
-        .then(function (h1) {
+    driver.get("http://127.0.0.1:3000").then(async () => {
+      try {
+        await driver.findElement(webdriver.By.css("h1")).then(async (h1) => {
+          await h1.getText();
           result = h1.getText();
-          console.log(result);
-        })
-        .catch(function (err) {
-          console.log(err);
         });
+        console.log(result);
+        assert.equal(result, expected);
+        done();
+      } catch (err) {
+        console.log(err);
+        done();
+      }
     });
-
-    try {
-      assert.equal(result, expected);
-    } catch (err) {
-      console.log(err);
-    }
-    done();
+    // .catch(function (err) {
+    //   console.log(err);
+    // });
   });
+
+  //   assert.equal(result, expected)
+  // } catch (err) {
+  //   console.log(err);
+  // }
+
+  // try {
+  //   assert.equal(result, expected);
+  // } catch (err) {
+  //   console.log(err);
+  // }
+  // done();
+  // });
 
   after(function () {
     driver.quit();
