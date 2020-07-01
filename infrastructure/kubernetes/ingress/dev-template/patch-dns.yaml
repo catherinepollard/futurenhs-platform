@@ -3,4 +3,4 @@ kind: Service
 metadata:
   name: ingress-nginx-controller
   annotations:
-    service.beta.kubernetes.io/azure-dns-label-name: fnhs-dev-tracyw
+    service.beta.kubernetes.io/azure-dns-label-name: fnhs-dev-{{NAME}}

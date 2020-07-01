@@ -1,0 +1,9 @@
+- op: replace
+  path: /spec/rules/0/host
+  value: fnhs-dev-{{NAME}}.westeurope.cloudapp.azure.com
+- op: replace
+  path: /spec/tls/0/hosts/0
+  value: fnhs-dev-{{NAME}}.westeurope.cloudapp.azure.com
+- op: replace
+  path: /spec/tls/0/secretName
+  value: fnhs-dev-{{NAME}}.westeurope.cloudapp.azure.com
