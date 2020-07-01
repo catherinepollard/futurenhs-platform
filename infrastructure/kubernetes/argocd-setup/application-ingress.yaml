@@ -11,6 +11,3 @@ spec:
     path: ./ingress
     repoURL: https://github.com/FutureNHS/futurenhs-deployments.git
     targetRevision: master
-  # syncPolicy:
-  #   automated:
-  #     prune: true

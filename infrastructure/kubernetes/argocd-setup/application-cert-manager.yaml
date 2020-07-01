@@ -11,9 +11,6 @@ spec:
     path: ./cert-manager
     repoURL: https://github.com/FutureNHS/futurenhs-deployments.git
     targetRevision: master
-  # syncPolicy:
-  #   automated:
-  #     prune: true
   ignoreDifferences:
     - group: admissionregistration.k8s.io
       version: v1beta1
