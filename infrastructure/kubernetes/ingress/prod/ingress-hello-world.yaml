@@ -8,10 +8,6 @@ metadata:
     cert-manager.io/issuer: letsencrypt
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
-  tls:
-    - hosts:
-        - fnhs.westeurope.cloudapp.azure.com
-      secretName: fnhs.westeurope.cloudapp.azure.com
   rules:
     - host: fnhs.westeurope.cloudapp.azure.com
       http:
@@ -20,3 +16,7 @@ spec:
             backend:
               serviceName: hello-world
               servicePort: 3030
+  tls:
+    - hosts:
+        - fnhs.westeurope.cloudapp.azure.com
+      secretName: fnhs.westeurope.cloudapp.azure.com

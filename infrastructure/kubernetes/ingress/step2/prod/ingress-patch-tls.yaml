@@ -1,9 +1,0 @@
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: ingress-service
-spec:
-  tls:
-    - hosts:
-        - fnhs.westeurope.cloudapp.azure.com
-      secretName: fnhs
