@@ -10,7 +10,7 @@ export default function Home() {
         <title>FutureNHS</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>FutureNHS</p>
+        <p>NHS Futures</p>
         <p>
           (This is a sample website - you’ll be building a site like this in{" "}
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
